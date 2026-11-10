@@ -1,0 +1,18 @@
+Aquí van los modelos 3D de cada auto (modelo-<nombre>.js).
+Créalos con utilidades/convertir-modelo.html.
+
+Nombres que espera la página:
+  modelo-ferrari458.js    Ferrari 458 Italia (ya incluido)
+  modelo-granturismo.js   Maserati GranTurismo MC Stradale (ya incluido)
+  modelo-supra.js         Toyota GR Supra (ya incluido)
+  modelo-porsche918.js    Porsche 918 Spyder (ya incluido)
+  modelo-huracan.js       Lamborghini Huracán EVO Spyder (ya incluido)
+  modelo-mclaren.js       McLaren 765LT Spider (ya incluido)
+  modelo-chiron.js        Bugatti Chiron (ya incluido)
+  modelo-jetta-gli.js     Volkswagen Jetta GLI (ya incluido)
+  modelo-bmw-serie3.js    BMW 330i xDrive (ya incluido)
+  modelo-mazda3.js        Mazda 3 Sedán (ya incluido)
+  modelo-audi-r8.js       Audi R8 LMS (ya incluido)
+
+Ya están los 11. Si quitas un archivo, ese auto se muestra con un auto original de vista previa
+(superdeportivo, gran turismo o sedán, definidos en assets/3d/modelos-vista-previa.js).

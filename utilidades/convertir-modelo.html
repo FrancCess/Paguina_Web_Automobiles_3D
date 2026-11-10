@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertidor de modelos 3D | VELOCE</title>
+    <link rel="icon" href="../assets/img/logo/veloce.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/img/logo/veloce-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/img/logo/veloce-180.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap-veloce.css">
+    <style>
+        :root { --bg: #0b0c0e; --card: #141619; --text: #f5f5f7; --muted: #a1a1a6; --accent: #e10600; --line: rgba(255,255,255,.1); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 22px 60px; border-bottom: 1px solid var(--line); }
+        .brand { font-weight: 600; letter-spacing: 5px; }
+        header a { color: var(--muted); font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+        header a:hover { color: var(--accent); }
+        main { max-width: 980px; margin: 0 auto; padding: 56px 30px 90px; }
+        .eyebrow { font-size: .7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+        h1 { font-size: 2.1rem; font-weight: 300; letter-spacing: 1px; text-transform: uppercase; margin: 8px 0 12px; }
+        .cv-lead { color: var(--muted); font-weight: 300; max-width: 640px; margin-bottom: 44px; }
+        section { border-top: 1px solid var(--line); padding: 34px 0; }
+        h2 { font-size: .78rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; margin-bottom: 20px; }
+        h2 span { color: var(--accent); margin-right: 12px; }
+        ol.steps { padding-left: 20px; color: #d4d4d8; font-weight: 300; font-size: .92rem; }
+        ol.steps li { margin-bottom: 8px; }
+        b, strong { font-weight: 600; color: var(--text); }
+        code { background: #1d2024; padding: 1px 6px; border-radius: 3px; font-size: .85em; }
+        table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+        th { text-align: left; font-size: .65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 500; padding: 0 12px 10px 0; }
+        td { padding: 11px 12px 11px 0; border-top: 1px solid var(--line); }
+        td a { color: var(--text); }
+        td a:hover { color: var(--accent); }
+        .tag { font-size: .65rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--line); white-space: nowrap; }
+        .tag.ok { border-color: #2f8f5b; color: #6fd39b; }
+        .tag.no { color: var(--muted); }
+        label.lbl { display: block; font-size: .68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+        select { width: 100%; max-width: 420px; background: #0f1113; color: var(--text); border: 1px solid var(--line); padding: 13px 14px; font: inherit; color-scheme: dark; margin-bottom: 22px; }
+        .drop { border: 1px dashed rgba(255,255,255,.3); padding: 46px 24px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; background: var(--card); }
+        .drop:hover, .drop.over { border-color: var(--accent); background: #191b1f; }
+        .drop p { color: var(--muted); font-size: .9rem; }
+        .drop strong { display: block; font-size: 1rem; margin-bottom: 4px; }
+        #out { margin-top: 26px; }
+        .box { background: var(--card); border: 1px solid var(--line); border-left: 2px solid var(--accent); padding: 22px 24px; margin-bottom: 18px; font-size: .9rem; }
+        .box.warn { border-left-color: #f2c200; }
+        .box.err { border-left-color: #ff5a52; }
+        .mats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .mats button { background: transparent; color: #d4d4d8; border: 1px solid var(--line); padding: 6px 10px; font: inherit; font-size: .8rem; cursor: pointer; }
+        .mats button.sel { border-color: var(--accent); color: #fff; }
+        .mats button:hover { border-color: #fff; }
+        .cv-btn { display: inline-block; text-decoration: none; background: var(--accent); color: #fff; border: 1px solid var(--accent); padding: 16px 30px; font: inherit; font-size: .75rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all .3s; }
+        .cv-btn:hover { background: #fff; color: var(--accent); border-color: #fff; }
+        .muted { color: var(--muted); font-size: .82rem; font-weight: 300; }
+        @media (max-width: 700px) { header { padding: 18px 22px; } main { padding: 36px 22px 70px; } .hide-m { display: none; } }
+            .lang-btn { appearance: none; background: transparent; border: 1px solid rgba(255,255,255,.18); color: rgba(245,245,247,.55); font: 500 .7rem/1 Inter, system-ui, sans-serif; letter-spacing: 2px; padding: 8px 10px; cursor: pointer; display: inline-flex; gap: 6px; }
+        .lang-btn span.on { color: #f5f5f7; font-weight: 700; } .lang-btn i { font-style: normal; opacity: .35; }
+</style>
+</head>
+<body>
+
+    <script src="../assets/js/i18n-diccionario.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <header>
+        <span class="brand">VELOCE</span>
+        <span style="display:flex;gap:14px;align-items:center"><button type="button" class="lang-btn" data-idioma-btn aria-label="Cambiar idioma a inglés">ES</button><a href="../index.html">← Volver a la página</a></span>
+    </header>
+
+    <main>
+        <span class="eyebrow">Herramienta interna</span>
+        <h1>Convertidor de modelos 3D</h1>
+        <p class="cv-lead">Convierte un archivo <b>.glb</b> en el archivo que usa la página, para que funcione con doble clic, sin servidor.</p>
+
+        <section>
+            <h2><span>01</span> Cómo agregar un auto</h2>
+            <ol class="steps">
+                <li>Busca el auto en la tabla de abajo y abre su búsqueda en Sketchfab (ya viene filtrada a modelos descargables). Necesitas una cuenta gratuita.</li>
+                <li>Elige un modelo con licencia <b>CC Attribution</b> o <b>CC0</b>, de preferencia que pese menos de 20&nbsp;MB, y descárgalo en formato <b>GLB</b>.</li>
+                <li>Aquí abajo selecciona el auto, arrastra el .glb y presiona <b>Descargar archivo</b>.</li>
+                <li>Mueve el archivo descargado (<code>modelo-….js</code>) a la carpeta <code>assets/3d/modelos/</code> de tu página y recárgala.</li>
+                <li>Si el auto aparece mirando hacia atrás, en <code>autos.js</code> agrega <code>girar: true</code> a ese auto. Si no cambia de color, copia aquí el nombre del material de la pintura en <code>materialCarroceria</code>.</li>
+            </ol>
+            <p class="muted" style="margin-top:14px">Con licencia CC Attribution debes dar crédito al autor del modelo; por ejemplo, en el footer de tu página.</p>
+        </section>
+
+        <section>
+            <h2><span>02</span> Modelos de la página</h2>
+            <table>
+                <thead><tr><th>Auto</th><th>Archivo</th><th>Estado</th><th class="hide-m">Buscar</th></tr></thead>
+                <tbody id="list"></tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2><span>03</span> Convertir</h2>
+            <label class="lbl" for="car">Auto</label>
+            <select id="car"></select>
+            <div class="drop" id="drop" tabindex="0">
+                <strong>Arrastra aquí tu archivo .glb</strong>
+                <p>o haz clic para elegirlo</p>
+                <input type="file" id="file" accept=".glb,model/gltf-binary" hidden>
+            </div>
+            <div id="out"></div>
+        </section>
+    </main>
+
+    <script src="../assets/js/autos.js"></script>
+    <script src="../assets/3d/modelo-ferrari.js"></script>
+    <script>
+        // Detecta qué modelos ya existen en 3d/modelos/
+        const autos = (window.AUTOMOBILI && window.AUTOMOBILI.autos || []).filter(a => a.modelo !== 'ferrari');
+        const files = autos.map(a => `../assets/3d/modelos/modelo-${a.modelo}.js`);
+        let pending = files.length;
+        files.forEach(src => {
+            const s = document.createElement('script');
+            s.src = src;
+            s.onload = s.onerror = () => { if (--pending === 0) renderList(); };
+            document.body.appendChild(s);
+        });
+        if (!files.length) renderList();
+
+        const SEARCH = {
+            granturismo: 'maserati granturismo mc stradale', supra: 'toyota supra a90', porsche918: 'porsche 918 spyder',
+            huracan: 'lamborghini huracan', mclaren: 'mclaren 765lt spider', chiron: 'bugatti chiron',
+            'jetta-gli': 'volkswagen jetta gli', 'bmw-serie3': 'bmw 3 series g20', mazda3: 'mazda 3 sedan', 'audi-r8': 'audi r8',
+        };
+        const searchUrl = (id) => 'https://sketchfab.com/search?features=downloadable&sort_by=-likeCount&type=models&q=' + encodeURIComponent(SEARCH[id] || id);
+
+        function renderList() {
+            const M = window.__MODELS__ || {};
+            document.getElementById('list').innerHTML = autos.map(a => `
+                <tr>
+                    <td><strong>${a.nombre}</strong></td>
+                    <td><code>modelo-${a.modelo}.js</code></td>
+                    <td>${M[a.modelo] ? '<span class="tag ok">Listo</span>' : '<span class="tag no">Pendiente</span>'}</td>
+                    <td class="hide-m"><a href="${searchUrl(a.modelo)}" target="_blank" rel="noopener">Sketchfab ↗</a></td>
+                </tr>`).join('');
+        }
+
+        const sel = document.getElementById('car');
+        sel.innerHTML = autos.map(a => `<option value="${a.modelo}">${a.nombre}</option>`).join('');
+
+        // ---------- Lectura del .glb ----------
+        const drop = document.getElementById('drop');
+        const input = document.getElementById('file');
+        const out = document.getElementById('out');
+        drop.addEventListener('click', () => input.click());
+        drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') input.click(); });
+        drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over'); });
+        drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+        drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('over'); if (e.dataTransfer.files[0]) handle(e.dataTransfer.files[0]); });
+        input.addEventListener('change', () => { if (input.files[0]) handle(input.files[0]); });
+
+        const EX = /(glass|window|vidrio|cristal|tire|tyre|llanta|neum|wheel|rim|interior|seat|asiento|chrome|cromo|light|lamp|faro|led|rubber|plastic|carbon|logo|badge|emblem|brake|disc|caliper|grill|plate|placa|mirror|engine|motor|exhaust|black|negro)/i;
+        const PAT = /(car_?paint|paint|pintura|body|carroc|exterior|chassis|karosserie|shell)/i;
+
+        function readGlb(buf) {
+            const v = new DataView(buf);
+            if (v.getUint32(0, true) !== 0x46546C67) throw new Error('El archivo no es un .glb válido.');
+            const len = v.getUint32(12, true);
+            const json = JSON.parse(new TextDecoder().decode(new Uint8Array(buf, 20, len)));
+            return json;
+        }
+
+        function guessBody(json) {
+            const mats = (json.materials || []).map(m => m.name || '');
+            const count = {};
+            (json.meshes || []).forEach(mesh => (mesh.primitives || []).forEach(p => {
+                if (p.material == null) return;
+                const name = mats[p.material];
+                const acc = json.accessors[p.indices != null ? p.indices : p.attributes.POSITION];
+                if (!name || EX.test(name)) return;
+                count[name] = (count[name] || 0) + (acc ? acc.count : 0);
+            }));
+            const names = Object.keys(count);
+            const byName = names.filter(n => PAT.test(n));
+            const pool = byName.length ? byName : names;
+            pool.sort((a, b) => count[b] - count[a]);
+            return pool[0] || '';
+        }
+
+        function toBase64(buf) {
+            const bytes = new Uint8Array(buf);
+            let bin = '';
+            for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+            return btoa(bin);
+        }
+
+        async function handle(file) {
+            const id = sel.value;
+            const car = autos.find(a => a.modelo === id);
+            if (!/\.glb$/i.test(file.name)) {
+                out.innerHTML = `<div class="box err">Ese archivo es <b>${file.name}</b>. Descarga el modelo en formato <b>GLB</b> desde Sketchfab (no en glTF, FBX ni OBJ).</div>`;
+                return;
+            }
+            out.innerHTML = '<div class="box">Leyendo el modelo…</div>';
+            try {
+                const buf = await file.arrayBuffer();
+                const json = readGlb(buf);
+                const mb = buf.byteLength / 1048576;
+                const req = json.extensionsRequired || [];
+                const mats = [...new Set((json.materials || []).map(m => m.name).filter(Boolean))];
+                const guess = guessBody(json);
+                const notes = [];
+                if (mb > 25) notes.push(`<div class="box warn">El modelo pesa <b>${mb.toFixed(1)} MB</b>. Funciona, pero la página tardará en cargar. Si puedes, busca una versión más ligera (menos de 20 MB).</div>`);
+                if (req.includes('KHR_texture_basisu')) notes.push('<div class="box err">Este modelo usa texturas KTX2, que la página no soporta. Busca otro modelo o descárgalo sin esa compresión.</div>');
+                if (req.includes('KHR_draco_mesh_compression')) notes.push('<div class="box warn">Este modelo usa compresión Draco: se verá bien, pero la página necesitará internet para cargarlo.</div>');
+
+                const js = `// ${car.nombre} — generado con convertir-modelo.html a partir de ${file.name}\nwindow.__MODELS__ = window.__MODELS__ || {};\nwindow.__MODELS__['${id}'] = 'data:model/gltf-binary;base64,${toBase64(buf)}';\n`;
+                const url = URL.createObjectURL(new Blob([js], { type: 'text/javascript' }));
+                const fname = `modelo-${id}.js`;
+
+                out.innerHTML = `
+                    ${notes.join('')}
+                    <div class="box">
+                        <p><b>${file.name}</b> · ${mb.toFixed(1)} MB · ${(json.meshes || []).length} piezas · ${mats.length} materiales</p>
+                        <p class="muted" style="margin-top:10px">Material de pintura detectado: <b>${guess || 'ninguno'}</b>. Si al cambiar de color no se pinta bien, elige otro y cópialo en <code>autos.js</code>:</p>
+                        <div class="mats">${mats.map(m => `<button type="button" class="${m === guess ? 'sel' : ''}" data-m="${m.replace(/"/g, '&quot;')}">${m}</button>`).join('')}</div>
+                        <p class="muted" id="copied" style="margin-top:10px"></p>
+                    </div>
+                    <a class="cv-btn" href="${url}" download="${fname}">Descargar ${fname}</a>
+                    <p class="muted" style="margin-top:14px">Guárdalo en la carpeta <code>assets/3d/modelos/</code> de tu página con ese mismo nombre.</p>`;
+
+                out.querySelectorAll('.mats button').forEach(b => b.addEventListener('click', async () => {
+                    const line = `materialCarroceria: '${b.dataset.m}',`;
+                    out.querySelectorAll('.mats button').forEach(x => x.classList.toggle('sel', x === b));
+                    try { await navigator.clipboard.writeText(line); document.getElementById('copied').innerHTML = `Copiado: <code>${line}</code> — pégalo dentro del auto <b>${car.nombre}</b> en autos.js.`; }
+                    catch { document.getElementById('copied').innerHTML = `Escribe en autos.js, dentro de <b>${car.nombre}</b>: <code>${line}</code>`; }
+                }));
+            } catch (err) {
+                out.innerHTML = `<div class="box err">No se pudo leer el archivo: ${err.message}</div>`;
+            }
+        }
+    </script>
+    <script src="../assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

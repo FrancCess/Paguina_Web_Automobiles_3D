@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrega a domicilio | VELOCE</title>
+    <link rel="icon" href="../assets/img/logo/veloce.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/img/logo/veloce-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/img/logo/veloce-180.png">
+    <meta name="description" content="Recibe tu auto nuevo en la puerta de tu casa.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap-veloce.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/reserva.css">
+    <link rel="stylesheet" href="../assets/css/herramientas.css">
+</head>
+<body data-herramienta="entrega">
+
+    <script src="../assets/js/i18n-diccionario.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+    <div class="rsv tool tool-page">
+        <div class="rsv-top">
+            <a class="rsv-brand" href="../index.html">VELOCE</a>
+            <span class="rsv-crumb">Herramientas <i>/</i> <b id="tool-crumb">Entrega a domicilio</b></span>
+            <button type="button" class="lang-btn tp-lang" data-idioma-btn aria-label="Cambiar idioma a inglés">ES</button>
+            <a class="rsv-close" href="../index.html">← Volver al inicio</a>
+        </div>
+        <nav class="tp-nav" aria-label="Características">
+            <a href="../index.html">Inicio</a><a href="comparador.html" data-p="comparador">Comparador</a><a href="mantenimiento.html" data-p="mantenimiento">Mantenimiento</a><a href="financiamiento.html" data-p="financiamiento">Financiamiento</a><a href="prueba-de-manejo.html" data-p="prueba">Prueba de manejo</a><a href="garantia.html" data-p="garantia">Garantía</a><a href="seguro.html" data-p="seguro">Seguro</a><a href="accesorios.html" data-p="accesorios">Accesorios</a><a href="entrega-a-domicilio.html" data-p="entrega">Entrega a domicilio</a>
+            <div class="tp-models">
+                <button type="button" class="tp-models-btn" id="tp-modelos-btn" aria-expanded="false" aria-controls="tp-modelos-panel">Modelos <span aria-hidden="true">+</span></button>
+            </div>
+        </nav>
+        <div class="tp-models-panel" id="tp-modelos-panel" hidden>
+            <span class="tp-models-title">Modelos · ver ficha</span>
+            <ul id="tp-modelos-lista"></ul>
+        </div>
+        <main class="tool-wrap" id="tool-body"></main>
+        <footer class="tp-foot">
+            <p>&copy; 2026 VELOCE · Proyecto escolar. Precios y servicios de ejemplo.</p>
+            <a href="../index.html">Ir a la página principal →</a>
+        </footer>
+    </div>
+    <script src="../assets/js/autos.js"></script>
+    <script src="../assets/js/herramientas.js"></script>
+    <script src="../assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>
